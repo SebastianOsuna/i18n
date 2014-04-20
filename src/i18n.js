@@ -17,20 +17,7 @@ var I18N = ( function() {
 		$.get( src ).done( function( data ) {
 			full_i18n = data;
 			// Get the data from the locale
-			i18n = data[ locale ];
-			if( i18n ) {
-				// Get all elements to apply I18N
-				var elems = $( "*[i18n-text]");
-				elems.each( function( index, object ) {
-					var i18n_id = $( object ).attr( 'i18n-text' );
-					// Get value
-					var i18n_val = I18N.resolve( i18n_id );
-					// Set the HTML text
-					$( object ).text( i18n_val );
-				} );
-			} else {
-				throw new Error( 'Locale "' + locale + '" not supported.' );
-			}
+			setLocale( locale );
 		} ).fail( function( error, errorMessage ) {
 			throw new Error( 'Error retrieving the i18n JSON file: ' + errorMessage + '.' );
 		} );
@@ -38,6 +25,28 @@ var I18N = ( function() {
 	} else {
 		throw new Error( 'No i18n script object found.' );
 	}
+
+	var setLocale = function( locale ) {
+		i18n_tmp = full_i18n[ locale ];
+		if( i18n_tmp ) {
+			i18n = i18n_tmp;
+			apply();
+		} else {
+			throw new Error( 'Locale ' + locale + ' not supported.' );
+		}
+	};
+
+	var apply = function() {
+		// Get all elements to apply I18N
+		var elems = $( "*[i18n-text]");
+		elems.each( function( index, object ) {
+			var i18n_id = $( object ).attr( 'i18n-text' );
+			// Get value
+			var i18n_val = I18N.resolve( i18n_id );
+			// Set the HTML text
+			$( object ).text( i18n_val );
+		} );
+	};
 
 	var resolve = function( id ) {
 		return recursiveResolve( id, i18n ) || id;
@@ -58,6 +67,7 @@ var I18N = ( function() {
 	}
 
 	return {
-		resolve: resolve
+		resolve: resolve,
+		setLocale: setLocale
 	};
 } )();
