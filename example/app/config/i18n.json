@@ -1,0 +1,16 @@
+{
+	"EN": {
+		"login.username": "Username",
+		"login": {
+			"password": "Password",
+			"submit": "Sign in"
+		}
+	},
+	"ES": {
+		"login.username": "Usuario",
+		"login": {
+			"password": "Contraseña",
+			"submit": "Entrar"
+		}
+	}
+}
