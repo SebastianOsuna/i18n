@@ -4,14 +4,16 @@ i18n
 Internationalization and localization library for HTML pages via Javascript.
 
 Supports nested resolving, i.e. you can use `I18N.resolve( 'a.b.c' )` to resolve 
-```
+
+``` 
 "EN": {
     "a": {
         "b": {
             "c": "Your text"
         }
     }
-}```
+}
+```
 or
 ```
 "EN": { "a.b.c": "Your text" } 
