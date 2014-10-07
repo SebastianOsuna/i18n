@@ -35,4 +35,4 @@ or
 
 See the example for more details.
 
-[jQuery]:http://jquery.com
+[jQuery]:http://jquery.com/download/

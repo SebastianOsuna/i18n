@@ -27,7 +27,7 @@ var I18N = ( function() {
     }
 
     var setLocale = function( locale ) {
-        i18n_tmp = full_i18n[ locale ];
+        var i18n_tmp = full_i18n[ locale ];
         if( i18n_tmp ) {
             i18n = i18n_tmp;
             apply();
